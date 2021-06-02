@@ -1,11 +1,11 @@
 import React from 'react';
 import './styles/app.scss';
-import Home from './pages/Home';
+import Routes from './routes';
 
 function App(): JSX.Element {
   return (
     <div className="App">
-      <Home />
+      <Routes />
     </div>
   );
 }
