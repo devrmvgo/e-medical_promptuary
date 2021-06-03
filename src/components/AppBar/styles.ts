@@ -8,7 +8,7 @@ export const StyledAppBar = styled.div`
   padding: 0.3rem 2rem 0 2rem;
 
   background: ${colors.primaryColor} !important;
-  color: ${colors.white} !important;
+  color: ${colors.grayLighter} !important;
 `;
 
 export const StyledTitle = styled.div`
@@ -32,6 +32,6 @@ export const StyledOption = styled.div`
 
   &:hover {
     color: ${colors.primaryColor};
-    background: ${colors.white};
+    background: ${colors.grayLighter};
   }
 `;
