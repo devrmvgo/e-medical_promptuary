@@ -1,70 +1,79 @@
 import React from 'react';
-import List from '@material-ui/core/List';
+
+//MATERIAL-UI COMPONENTS
 import ListItem from '@material-ui/core/ListItem';
 import Divider from '@material-ui/core/Divider';
-import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+
+//STYLED COMPONENTS
+import { StyledList, StyledItemDescription, StyledItemActions } from './styles';
+
+//ICONS
+import EditIcon from '@material-ui/icons/Edit';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
+interface Patient {
+  id: string;
+  name: string;
+  description: string;
+  clinicalCondition: string;
+}
 
 type data = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  items: Array<any>;
+  items: Array<Patient>;
 };
 
-const ListPatients: React.FC<data> = ({ items }: data) => {
+const List: React.FC<data> = ({ items }: data) => {
   return (
-    <List>
+    <StyledList>
       {items.map((item, index) => (
         <React.Fragment key={index}>
-          <ListItem alignItems="flex-start">
+          <ListItem>
             <ListItemAvatar>
               <Avatar alt={item.name} src="/static/images/avatar/2.jpg" />
             </ListItemAvatar>
-            <ListItemText
-              primary="Summer BBQ"
+            {/* <ListItemText
+              primary={item.name}
               secondary={
                 <React.Fragment>
-                  <Typography
-                    component="span"
-                    variant="body2"
-                    color="textPrimary"
-                  >
-                    to Scott, Alex, Jennifer
+                  <Typography component="span" color="textSecondary">
+                    {item.description}
                   </Typography>
-                  {" — Wish I could come, but I'm out of town this…"}
                 </React.Fragment>
               }
-            />
-            <div>
-              <button
+            /> */}
+
+            <StyledItemDescription>
+              <span>{item.name}</span>
+              <div className="description">{item.description}</div>
+              <div className="condiction">{item.clinicalCondition}</div>
+            </StyledItemDescription>
+
+            <StyledItemActions>
+              <EditIcon
                 onClick={() => {
                   console.log(item);
                 }}
-              >
-                ver
-              </button>
-              <button
+              />
+              <AssignmentIcon
                 onClick={() => {
                   console.log(item);
                 }}
-              >
-                ver
-              </button>
-              <button
+              />
+              <HighlightOffIcon
                 onClick={() => {
                   console.log(item);
                 }}
-              >
-                ver
-              </button>
-            </div>
+              />
+            </StyledItemActions>
           </ListItem>
-          <Divider variant="inset" component="li" />
+          <Divider component="li" />
         </React.Fragment>
       ))}
-    </List>
+    </StyledList>
   );
 };
 
-export default ListPatients;
+export default List;
