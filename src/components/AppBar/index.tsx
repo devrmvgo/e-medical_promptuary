@@ -1,20 +1,51 @@
 import React from 'react';
-import { StyledAppBar } from './styles';
-import Button from '@material-ui/core/Button';
+import { useHistory } from 'react-router-dom';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import {
+  StyledAppBar,
+  StyledTitle,
+  StyledOptionsContent,
+  StyledOption,
+} from './styles';
 
 const AppBar: React.FC = () => {
+  const history = useHistory();
+
   return (
     <StyledAppBar>
-      <div className="titleMenu">
+      <StyledTitle>
         <AssignmentIndIcon />
         <span>Prontuário Médico Eletrônico</span>
-      </div>
+      </StyledTitle>
 
-      <div className="appOptions">
-        <Button color="inherit">Pacientes</Button>
-        <Button color="inherit">Promptuário</Button>
-      </div>
+      <StyledOptionsContent>
+        <StyledOption
+          color="inherit"
+          onClick={() => {
+            history.push('/patients/register');
+          }}
+        >
+          <span> Novo paciente</span>
+        </StyledOption>
+
+        <StyledOption
+          color="inherit"
+          onClick={() => {
+            history.push('/patients');
+          }}
+        >
+          Pacientes
+        </StyledOption>
+
+        <StyledOption
+          color="inherit"
+          onClick={() => {
+            history.push('/patients/promptuary');
+          }}
+        >
+          Prontuário
+        </StyledOption>
+      </StyledOptionsContent>
     </StyledAppBar>
   );
 };

@@ -3,28 +3,35 @@ import colors from '../../styles/colors';
 
 export const StyledAppBar = styled.div`
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 2fr;
   height: 50px;
-  padding: 0 1rem;
+  padding: 0.3rem 2rem 0 2rem;
+
   background: ${colors.primaryColor} !important;
   color: ${colors.white} !important;
+`;
 
-  div {
-    display: flex;
-    align-items: center;
-  }
-
-  .titleMenu {
-    svg {
-      margin: 0 10px;
-    }
-  }
-
-  .appOptions {
-    right: 0;
+export const StyledTitle = styled.div`
+  display: flex;
+  align-items: center;
+  svg {
+    margin: 0 10px;
   }
 `;
 
-export const StyledAvatar = styled.img`
-  width: 100px;
+export const StyledOptionsContent = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StyledOption = styled.div`
+  margin: 0 10px;
+  padding: 8px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    color: ${colors.primaryColor};
+    background: ${colors.white};
+  }
 `;

@@ -8,6 +8,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 type data = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   items: Array<any>;
 };
 

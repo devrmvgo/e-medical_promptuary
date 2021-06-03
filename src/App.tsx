@@ -3,11 +3,16 @@ import './styles/app.scss';
 import Routes from './routes';
 import AppBar from './components/AppBar';
 
+import { BrowserRouter } from 'react-router-dom';
+
 function App(): JSX.Element {
   return (
     <div className="App">
-      <AppBar />
-      <Routes />
+      <BrowserRouter>
+        <AppBar />
+        <Routes />
+      </BrowserRouter>
+      ,
     </div>
   );
 }
