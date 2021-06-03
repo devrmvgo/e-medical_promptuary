@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyledContentHome } from './styles';
-import AppBar from '../../components/AppBar';
+import PatientList from '../../components/PatientList';
 
 const Home: React.FC = () => {
   return (
     <StyledContentHome>
-      <AppBar />
+      <PatientList />
     </StyledContentHome>
   );
 };
