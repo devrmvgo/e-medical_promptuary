@@ -11,10 +11,12 @@ export const StyledListPatientsContent = styled(List)`
     color: ${colors.gray};
   }
 
-  .container {
-    height: 480px;
-    min-width: 40rem;
-    max-width: 70rem;
+  ul {
+    background: ${colors.grayLighter};
+
+    li:hover {
+      background: ${colors.grayStronger};
+    }
   }
 `;
 
