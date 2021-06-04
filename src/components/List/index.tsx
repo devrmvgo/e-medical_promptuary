@@ -58,24 +58,24 @@ const List: React.FC<data> = ({ items, actions }: data) => {
               </StyledItemDescription>
 
               <StyledItemActions>
+                <div title="Prontuário">
+                  <AssignmentIcon
+                    onClick={() => {
+                      actions.see(item);
+                    }}
+                  />
+                </div>
                 <div title="Editar">
                   <EditIcon
                     onClick={() => {
                       actions.edit(item);
-                    }}
-                  />{' '}
-                </div>
-                <div title="Prontuário">
-                  <AssignmentIcon
-                    onClick={() => {
-                      console.log(item);
                     }}
                   />
                 </div>
                 <div title="Apagar">
                   <HighlightOffIcon
                     onClick={() => {
-                      console.log(item);
+                      actions.delete(item);
                     }}
                   />
                 </div>

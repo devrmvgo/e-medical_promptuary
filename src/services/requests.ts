@@ -3,14 +3,14 @@
 import axios from 'axios';
 
 export const urlServer =
-  'https://fsjlfic2n0.execute-api.us-east-2.amazonaws.com/emedicalpromptuary';
+  'https://ukd9v1zn4i.execute-api.us-east-2.amazonaws.com/emedicalpromptuary';
 
 type Response = {
   data?: any;
   error?: boolean;
 };
 
-export const getRequest = async (
+export const getAllRequest = async (
   path: string,
   url: string = urlServer,
 ): Promise<Response> => {
@@ -33,6 +33,20 @@ export const postRequest = async (
     .post(`${url}${path}`, data)
     .then((response) => {
       return { data: response.data };
+    })
+    .catch((error) => {
+      return { error };
+    });
+};
+
+export const deleteRequest = async (
+  path: string,
+  url: string = urlServer,
+): Promise<Response> => {
+  return await axios
+    .delete(`${url}${path}`)
+    .then((response) => {
+      return { data: response };
     })
     .catch((error) => {
       return { error };

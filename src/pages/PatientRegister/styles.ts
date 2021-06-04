@@ -42,4 +42,5 @@ export const StyledButton = styled.div`
 export const StyledForm = styled.div`
   width: 820px;
   padding: 1rem;
+  margin-top: 1rem;
 `;

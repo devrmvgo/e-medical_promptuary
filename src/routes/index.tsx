@@ -18,7 +18,17 @@ function Routes({ children }: Props): JSX.Element {
         <Route exact path="/" component={Home} />
         <Route exact path="/patients" component={PatientList} />
         <Route exact path="/patients/register" component={PatientRegister} />
+        <Route
+          exact
+          path="/patients/register/:idPatient"
+          component={PatientRegister}
+        />
         <Route exact path="/patients/promptuary" component={Promptuary} />
+        <Route
+          exact
+          path="/patients/promptuary/:idPatient"
+          component={Promptuary}
+        />
         <Route render={() => <Redirect to="/" />} />
       </Switch>
     </React.Fragment>

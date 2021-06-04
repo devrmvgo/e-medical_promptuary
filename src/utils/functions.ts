@@ -32,7 +32,5 @@ export const prepareDataListPatients = (
     patientsData.push(i);
   });
 
-  console.log(patientsData);
-
   return patientsData;
 };

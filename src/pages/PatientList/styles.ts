@@ -7,6 +7,21 @@ export const StyledContentPatientList = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .modal {
+    display: flex;
+    padding: 1rem;
+    alignitems: center;
+    justifycontent: center;
+  }
+
+  .modalContent {
+    width: 400;
+    backgroundcolor: white;
+    border: 2px solid #000;
+    padding: 1rem;
+    color: red !important;
+  }
+
   .loading {
     display: flex;
     flex-direction: column;
