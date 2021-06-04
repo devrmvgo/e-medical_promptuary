@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import colors from '../../styles/colors';
 
 export const StyledList = styled(List)`
-  height: 500px;
+  height: 460px;
   width: 90%;
   text-align: center;
 
@@ -12,6 +12,7 @@ export const StyledList = styled(List)`
     flex-direction: column;
     justify-content: center;
     height: 80%;
+    color: ${colors.primaryColor};
   }
   
   li:hover {
@@ -25,6 +26,30 @@ export const StyledList = styled(List)`
   }
   ::-webkit-scrollbar-thumb {
     background: #dad7d7;
+  }
+`;
+
+export const StyledInputSearch = styled.div`
+  width: 88%;
+  margin-bottom: 1rem;
+  background: ${colors.grayLighter};
+  border: 0.5px solid ${colors.grayStronger};
+  display: flex;
+
+  svg {
+    color: ${colors.gray};
+    font-size: 28px;
+    text-align: center;
+    margin: 5px;
+  }
+
+  input {
+    width: 93%;
+    height: 35px;
+    border: 0;
+    font-size: 15px;
+    background: transparent;
+    outline: 0;
   }
 `;
 

@@ -12,8 +12,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import Divider from '@material-ui/core/Divider';
 
 import { StyledDrawer, StyledTitle } from './styles';
+
 const drawerWidth = 260;
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -105,6 +107,7 @@ export default function MiniDrawer({ children }: Props): JSX.Element {
           )}
         </div>
 
+        <Divider />
         <List>
           <ListItem
             button
