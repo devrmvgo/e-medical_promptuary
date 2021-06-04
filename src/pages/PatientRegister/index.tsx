@@ -50,42 +50,41 @@ const Home: React.FC = () => {
   const [patient, setPatient] = useState<PatientData>(patientForm);
 
   const register = async () => {
-    setPatient(patientForm);
-    // if (
-    //   !patient.name ||
-    //   !patient.cpfNumber ||
-    //   !patient.birthDate ||
-    //   !patient.gender
-    // ) {
-    //   setOpenAlert({
-    //     message: 'Preencha todos os campos obrigatórios (*)',
-    //     show: true,
-    //     type: 'error',
-    //   });
-    // } else {
-    //   const patienCreated = await create(patient);
+    if (
+      !patient.name ||
+      !patient.cpfNumber ||
+      !patient.birthDate ||
+      !patient.gender
+    ) {
+      setOpenAlert({
+        message: 'Preencha todos os campos obrigatórios (*)',
+        show: true,
+        type: 'error',
+      });
+    } else {
+      const patienCreated = await create(patient);
 
-    //   if (patienCreated) {
-    //     setPatient({
-    //       name: '',
-    //       cpfNumber: '',
-    //       birthDate: '',
-    //       gender: '',
-    //     });
+      if (patienCreated) {
+        setPatient({
+          name: '',
+          cpfNumber: '',
+          birthDate: '',
+          gender: '',
+        });
 
-    //     setOpenAlert({
-    //       message: 'Paciente salvo com sucesso',
-    //       show: true,
-    //       type: 'success',
-    //     });
-    //   } else {
-    //     setOpenAlert({
-    //       message: 'Falha ao salvar paciente',
-    //       show: true,
-    //       type: 'error',
-    //     });
-    //   }
-    // }
+        setOpenAlert({
+          message: 'Paciente salvo com sucesso',
+          show: true,
+          type: 'success',
+        });
+      } else {
+        setOpenAlert({
+          message: 'Falha ao salvar paciente',
+          show: true,
+          type: 'error',
+        });
+      }
+    }
   };
 
   return (
