@@ -14,6 +14,10 @@ export const StyledContentPatientList = styled.div`
     flex-direction: column;
     justify-content: center;
     height: 80%;
+
+    svg {
+      color: ${colors.primaryColor};
+    }
   }
 
   h2 {
