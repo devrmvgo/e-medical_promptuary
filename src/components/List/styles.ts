@@ -4,8 +4,7 @@ import colors from '../../styles/colors';
 
 export const StyledList = styled(List)`
   height: 500px;
-  width: 80%;
-  background: ${colors.grayLighter};
+  width: 90%;
   text-align: center;
 
   .noItems {
@@ -21,9 +20,6 @@ export const StyledList = styled(List)`
   }
 
   overflow: scroll;
-  ::-webkit-scrollbar-track {
-    background-color: #f4f4f4;
-  }
   ::-webkit-scrollbar {
     width: 6px;
   }

@@ -7,7 +7,6 @@ export const StyledContentPatientRegister = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${colors.grayLighter};
 
   .action {
     display: grid;
@@ -41,5 +40,4 @@ export const StyledButton = styled.div`
 export const StyledForm = styled.div`
   width: 820px;
   padding: 1rem;
-  background: ${colors.grayLighter};
 `;

@@ -9,8 +9,9 @@ function App(): JSX.Element {
   return (
     <div className="App">
       <BrowserRouter>
-        <AppBar />
-        <Routes />
+        <AppBar>
+          <Routes />
+        </AppBar>
       </BrowserRouter>
       ,
     </div>
