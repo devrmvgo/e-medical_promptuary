@@ -11,7 +11,7 @@ export const StyledContentPatientList = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 80%;
+    height: 80vh;
 
     svg {
       color: ${colors.primaryColor};

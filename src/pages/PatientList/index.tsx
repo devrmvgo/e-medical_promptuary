@@ -6,6 +6,9 @@ import { getList } from '../../models/patient';
 import { PatientInterface } from '../../utils/interfaces';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
+
+import TitlePage from '../../components/TitlePage';
+
 const actions = {
   edit: (patient: PatientInterface) => {
     console.log('editar: ', patient);
@@ -49,7 +52,7 @@ const Home: React.FC = () => {
   } else {
     return (
       <StyledContentPatientList>
-        <h2>Lista de pacientes</h2>
+        <TitlePage>Lista de pacientes</TitlePage>
         <List items={patients} actions={actions} />
       </StyledContentPatientList>
     );
