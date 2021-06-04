@@ -14,18 +14,21 @@ import EditIcon from '@material-ui/icons/Edit';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-interface Patient {
-  id: string;
-  name: string;
-  description: string;
-  clinicalCondition: string;
+//INTERFACES
+import { PatientInterface } from '../../utils/interfaces';
+
+interface Actions {
+  edit: (patient: PatientInterface) => void;
+  see: (patient: PatientInterface) => void;
+  delete: (patient: PatientInterface) => void;
 }
 
 type data = {
-  items: Array<Patient>;
+  items: Array<PatientInterface>;
+  actions: Actions;
 };
 
-const List: React.FC<data> = ({ items }: data) => {
+const List: React.FC<data> = ({ items, actions }: data) => {
   return (
     <StyledList>
       {items.map((item, index) => (
@@ -34,27 +37,19 @@ const List: React.FC<data> = ({ items }: data) => {
             <ListItemAvatar>
               <Avatar alt={item.name} src="/static/images/avatar/2.jpg" />
             </ListItemAvatar>
-            {/* <ListItemText
-              primary={item.name}
-              secondary={
-                <React.Fragment>
-                  <Typography component="span" color="textSecondary">
-                    {item.description}
-                  </Typography>
-                </React.Fragment>
-              }
-            /> */}
 
             <StyledItemDescription>
               <span>{item.name}</span>
               <div className="description">{item.description}</div>
-              <div className="condiction">{item.clinicalCondition}</div>
+              <div className="clinicalCondition">
+                {item.clinicalCondition.message}
+              </div>
             </StyledItemDescription>
 
             <StyledItemActions>
               <EditIcon
                 onClick={() => {
-                  console.log(item);
+                  actions.edit(item);
                 }}
               />
               <AssignmentIcon

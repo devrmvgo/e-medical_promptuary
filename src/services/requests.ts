@@ -1,48 +1,24 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
 export const urlServer =
   'https://fsjlfic2n0.execute-api.us-east-2.amazonaws.com/emedicalpromptuary';
 
 type Response = {
-  data: any;
-  error: boolean;
+  data?: any;
+  error?: boolean;
 };
 
-export const getPatients = (
+export const getRequest = async (
   path: string,
   url: string = urlServer,
-): Response => {
-  const response = { data: {}, error: false };
-
-  axios
+): Promise<Response> => {
+  return await axios
     .get(`${url}${path}`)
-    .then((res) => {
-      response.data = res.data;
+    .then((response) => {
+      return { data: response.data.Items };
     })
-    .catch((e) => {
-      console.log(e);
-      response.error = true;
+    .catch((error) => {
+      return { error };
     });
-
-  return response;
 };
-
-// export const requestPost = (
-//   path: string,
-//   data: any,
-//   url: string = urlServer,
-// ): void => {
-//   let response;
-
-//   axios
-//     .post(`${url}${path}`, data)
-//     .then((res) => {
-//       response = res.data;
-//     })
-//     .catch((e) => {
-//       console.log(e);
-//       response = null;
-//     });
-
-//   return response;
-// };

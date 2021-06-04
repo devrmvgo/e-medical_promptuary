@@ -13,7 +13,6 @@ export const StyledList = styled(List)`
   }
 
   overflow: scroll;
-
   ::-webkit-scrollbar-track {
     background-color: #f4f4f4;
   }
@@ -35,8 +34,10 @@ export const StyledItemDescription = styled.div`
     margin: 3px 0;
     font-size: 12px;
   }
-  .condiction {
+
+  .clinicalCondition {
     color: ${colors.primaryColor};
+    font-size: 15px;
   }
 `;
 
