@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 //INTERFACE PARA ESTADO CLÍNICO DE PACIENTE
 export interface ClinicalConditionInterface {
   have: boolean;
@@ -12,21 +14,9 @@ export interface PatientInterface {
   clinicalCondition: ClinicalConditionInterface;
 }
 
-// "name": "Cleide Lima",
-// "birth_date": "23/02/1973",
-// "gender": "Feminino",
-// "Job": "Agricultora",
-// "address": "Rua Lágoa Nova, n 110, Av. Indepêndencia, Pau dos Ferros",
-// "phone": "(84) 9 8808-5163",
-// "weight": 91.2,
-// "heigth": 1.63,
-// "blood_type": "A+",
-// "medications": [],
-// "illnesses": [{"name": "hipertensão"}],
-// "clinical_consultations": []
-
 //TODOS OS DADOS QUE SERÃO ARMAZENADOS DE PACIENTE
 export interface PatientData {
+  id?: string;
   cpfNumber: string;
   name: string;
   birthDate: string;
@@ -38,9 +28,9 @@ export interface PatientData {
   weight?: string;
   heigth?: string;
   bloodType?: string;
-  medications?: string;
-  illnesses?: string;
-  clinicalConsultations?: string;
+  medications?: any;
+  illnesses?: any;
+  clinicalConsultations?: any;
 }
 
 //DADOS DE PACIENTE QUE VIRÃO DO BANCO DE DADOS

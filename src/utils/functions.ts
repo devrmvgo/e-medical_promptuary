@@ -1,9 +1,7 @@
 import { PatientData, PatientInterface, PatientDB } from '../utils/interfaces';
 
 export const generateDetailsPatient = (patient: PatientData): string => {
-  const gender = patient.gender == 'Masculino' ? 'Homem' : 'Mulher';
-
-  return `${gender}, nascido(a) em ${patient.birthDate}, documento nº ${patient.cpfNumber}`;
+  return `Nascido(a) em ${patient.birthDate}, documento nº ${patient.cpfNumber}, gênero ${patient.gender}`;
 };
 
 /*
@@ -23,7 +21,7 @@ export const prepareDataListPatients = (
       clinicalCondition: item.patient_data.illnesses
         ? {
             have: true,
-            message: 'Comordidades/doenças registradas em prontuário',
+            message: 'Comorbidades/doenças registradas em prontuário',
           }
         : {
             have: false,
