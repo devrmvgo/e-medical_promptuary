@@ -16,7 +16,9 @@ export const StyledContentPatientRegister = styled.div`
     display: flex;
 
     div {
+      text-align: center;
       max-width: 350px;
+      margin: 0 2rem;
       color: ${colors.primaryColor};
     }
   }

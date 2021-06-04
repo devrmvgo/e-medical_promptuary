@@ -194,7 +194,7 @@ const Home: React.FC = () => {
       <div className="action">
         <div>
           Após cadastrar o paciente você poderá controlar o seu prontuário. O
-          mesmo é composto por registro de Doenças/Comorbidade, Consultas e
+          mesmo é composto por registro de Doenças/Comorbidades, Consultas e
           Medicações.
         </div>
         <div>

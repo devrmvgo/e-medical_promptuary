@@ -18,7 +18,6 @@ export const StyledList = styled(List)`
   }
   ::-webkit-scrollbar {
     width: 6px;
-    background: #f4f4f4;
   }
   ::-webkit-scrollbar-thumb {
     background: #dad7d7;

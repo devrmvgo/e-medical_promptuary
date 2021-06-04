@@ -1,8 +1,8 @@
 import React from 'react';
-import { StyledContentHome } from './styles';
+import { StyledContentPromptuary } from './styles';
 
-const Home: React.FC = () => {
-  return <StyledContentHome>Prontuário</StyledContentHome>;
+const Promptuary: React.FC = () => {
+  return <StyledContentPromptuary>Prontuário</StyledContentPromptuary>;
 };
 
-export default Home;
+export default Promptuary;
