@@ -30,7 +30,7 @@ export const StyledList = styled(List)`
 `;
 
 export const StyledInputSearch = styled.div`
-  width: 88%;
+  width: 90%;
   margin-bottom: 1rem;
   background: ${colors.grayLighter};
   border: 0.5px solid ${colors.grayStronger};
@@ -40,7 +40,7 @@ export const StyledInputSearch = styled.div`
     color: ${colors.gray};
     font-size: 28px;
     text-align: center;
-    margin: 5px;
+    margin: 5px 12px;
   }
 
   input {
