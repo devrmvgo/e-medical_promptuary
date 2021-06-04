@@ -49,7 +49,7 @@ export const StyledItemDescription = styled.div`
 `;
 
 export const StyledItemActions = styled.div`
-  width: 100%;
+  display: flex;
   text-align: right;
 
   svg {
