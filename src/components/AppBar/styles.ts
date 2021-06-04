@@ -5,7 +5,7 @@ import Drawer from '@material-ui/core/Drawer';
 export const StyledTitle = styled.div`
   margin: 0 3rem;
   color: ${colors.primaryColor};
-  font-size: 20px;
+  font-size: 18px;
 `;
 
 export const StyledDrawer = styled(Drawer)`

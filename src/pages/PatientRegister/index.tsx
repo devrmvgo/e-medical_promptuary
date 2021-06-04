@@ -12,7 +12,7 @@ import { PatientData } from '../../utils/interfaces';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
 import { create } from '../../models/patient';
-
+import TitlePage from '../../components/TitlePage';
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 };
@@ -89,7 +89,7 @@ const Home: React.FC = () => {
 
   return (
     <StyledContentPatientRegister>
-      <h2>Registro de paciente</h2>
+      <TitlePage>Registro de Paciente</TitlePage>
 
       <Snackbar
         open={openAlert.show}

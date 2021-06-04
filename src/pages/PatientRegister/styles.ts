@@ -14,10 +14,13 @@ export const StyledContentPatientRegister = styled.div`
     padding: 1rem;
     display: flex;
 
+    margin-top: 3rem;
+
     div {
       text-align: center;
       max-width: 350px;
       margin: 0 2rem;
+      font-size: 15px;
       color: ${colors.primaryColor};
     }
   }
@@ -36,8 +39,8 @@ export const StyledButton = styled.div`
     color: ${colors.primaryColor}!important;
   }
 `;
-
 export const StyledForm = styled.div`
   width: 820px;
   padding: 1rem;
+  margin-top: 2rem;
 `;
