@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import {
   StyledContentPatientRegister,
   StyledForm,
@@ -11,7 +12,7 @@ import { PatientData } from '../../utils/interfaces';
 
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
-import { create } from '../../models/patient';
+import { create, getOne, update } from '../../models/patient';
 import TitlePage from '../../components/TitlePage';
 const Alert = (props: AlertProps) => {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -21,6 +22,10 @@ interface AlerInterface {
   message?: string;
   show: boolean;
   type: 'success' | 'error';
+}
+
+interface Params {
+  idPatient?: string;
 }
 
 const Home: React.FC = () => {
@@ -49,6 +54,24 @@ const Home: React.FC = () => {
 
   const [patient, setPatient] = useState<PatientData>(patientForm);
 
+  const params: Params = useParams();
+
+  const getPatient = async (patientId: string) => {
+    const patient = await getOne(patientId);
+
+    if (patient) {
+      setPatient({ id: patient.patient_id, ...patient.patient_data });
+    } else {
+      console.error('Falha ao carregar listagem de pacientes');
+    }
+  };
+
+  useEffect(() => {
+    if (params.idPatient) {
+      getPatient(params.idPatient);
+    }
+  }, []);
+
   const register = async () => {
     if (
       !patient.name ||
@@ -62,15 +85,16 @@ const Home: React.FC = () => {
         type: 'error',
       });
     } else {
-      const patienCreated = await create(patient);
+      let patienCreated;
 
+      if (patient.id) {
+        patienCreated = await update(patient.id, patient);
+      } else {
+        patienCreated = await create(patient);
+      }
+      console.log(patienCreated);
       if (patienCreated) {
-        setPatient({
-          name: '',
-          cpfNumber: '',
-          birthDate: '',
-          gender: '',
-        });
+        setPatient(patientForm);
 
         setOpenAlert({
           message: 'Paciente salvo com sucesso',
@@ -193,9 +217,9 @@ const Home: React.FC = () => {
 
       <div className="action">
         <div>
-          Após cadastrar o paciente você poderá controlar o seu prontuário. O
-          mesmo é composto por registro de Doenças/Comorbidades, Consultas e
-          Medicações.
+          Área destinada ao cadastro geral do paciente. Após registro o paciente
+          você poderá controlar o seu prontuário, composto por registro de
+          Doenças/Comorbidades, Consultas e Medicações.
         </div>
         <div>
           <StyledButton onClick={() => register()}>

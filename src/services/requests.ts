@@ -24,6 +24,20 @@ export const getAllRequest = async (
     });
 };
 
+export const getOneRequest = async (
+  path: string,
+  url: string = urlServer,
+): Promise<Response> => {
+  return await axios
+    .get(`${url}${path}`)
+    .then((response) => {
+      return { data: response.data.Item };
+    })
+    .catch((error) => {
+      return { error };
+    });
+};
+
 export const postRequest = async (
   path: string,
   data: any,
@@ -31,6 +45,22 @@ export const postRequest = async (
 ): Promise<Response> => {
   return await axios
     .post(`${url}${path}`, data)
+    .then((response) => {
+      return { data: response.data };
+    })
+    .catch((error) => {
+      return { error };
+    });
+};
+
+export const putRequest = async (
+  path: string,
+  data: any,
+  url: string = urlServer,
+): Promise<Response> => {
+  console.log(`${url}${path}`, data);
+  return await axios
+    .put(`${url}${path}`, data)
     .then((response) => {
       return { data: response.data };
     })

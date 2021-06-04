@@ -1,8 +1,10 @@
-import { PatientInterface, PatientData } from '../utils/interfaces';
+import { PatientInterface, PatientData, PatientDB } from '../utils/interfaces';
 import {
   getAllRequest,
   postRequest,
   deleteRequest,
+  getOneRequest,
+  putRequest,
 } from '../services/requests';
 import { prepareDataListPatients } from '../utils/functions';
 
@@ -14,10 +16,31 @@ export const getList = async (): Promise<PatientInterface[] | void> => {
   }
 };
 
+export const getOne = async (patiendId: string): Promise<PatientDB | void> => {
+  const response = await getOneRequest(`/patients/${patiendId}`);
+
+  if (response.data) {
+    return response.data;
+  }
+};
+
 export const create = async (
   patient: PatientData,
 ): Promise<PatientData | void> => {
   const response = await postRequest('/patients', { patient: patient });
+
+  if (response.data) {
+    return response.data;
+  }
+};
+
+export const update = async (
+  patiendId: string,
+  patient: PatientData,
+): Promise<PatientData | void> => {
+  const response = await putRequest(`/patients/${patiendId}`, {
+    patient: patient,
+  });
 
   if (response.data) {
     return response.data;
