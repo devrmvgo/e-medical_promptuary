@@ -6,7 +6,15 @@ export const StyledList = styled(List)`
   height: 500px;
   width: 80%;
   background: ${colors.grayLighter};
+  text-align: center;
 
+  .noItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80%;
+  }
+  
   li:hover {
       background: ${colors.grayStronger};
     }

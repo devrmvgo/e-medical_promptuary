@@ -5,6 +5,7 @@ import List from '../../components/List';
 import { getList } from '../../models/patient';
 import { PatientInterface } from '../../utils/interfaces';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 const actions = {
   edit: (patient: PatientInterface) => {
     console.log('editar: ', patient);
@@ -19,6 +20,7 @@ const actions = {
 
 const Home: React.FC = () => {
   const [patients, setPatients] = useState<PatientInterface[]>([]);
+  const [load, setLoad] = useState(true);
 
   const setList = async () => {
     const list = await getList();
@@ -28,18 +30,30 @@ const Home: React.FC = () => {
     } else {
       console.error('Falha ao carregar listagem de pacientes');
     }
+
+    setLoad(false);
   };
 
   useEffect(() => {
     setList();
   }, []);
 
-  return (
-    <StyledContentPatientList>
-      <h2>Lista de pacientes</h2>
-      <List items={patients} actions={actions} />
-    </StyledContentPatientList>
-  );
+  if (load) {
+    return (
+      <StyledContentPatientList>
+        <div className="loading">
+          <CircularProgress />
+        </div>
+      </StyledContentPatientList>
+    );
+  } else {
+    return (
+      <StyledContentPatientList>
+        <h2>Lista de pacientes</h2>
+        <List items={patients} actions={actions} />
+      </StyledContentPatientList>
+    );
+  }
 };
 
 export default Home;

@@ -29,46 +29,58 @@ type data = {
 };
 
 const List: React.FC<data> = ({ items, actions }: data) => {
-  return (
-    <StyledList>
-      {items.map((item, index) => (
-        <React.Fragment key={index}>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar alt={item.name} src="/static/images/avatar/2.jpg" />
-            </ListItemAvatar>
+  if (!items[0]) {
+    return (
+      <StyledList>
+        <div className="noItems">
+          <span>:(</span>
+          <span>Não há pacientes cadastrados</span>
+          <span>Vá até a página de cadastro para novo paciente</span>
+        </div>
+      </StyledList>
+    );
+  } else {
+    return (
+      <StyledList>
+        {items.map((item, index) => (
+          <React.Fragment key={index}>
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar alt={item.name} src="./avatar" />
+              </ListItemAvatar>
 
-            <StyledItemDescription>
-              <span>{item.name}</span>
-              <div className="description">{item.description}</div>
-              <div className="clinicalCondition">
-                {item.clinicalCondition.message}
-              </div>
-            </StyledItemDescription>
+              <StyledItemDescription>
+                <span>{item.name}</span>
+                <div className="description">{item.description}</div>
+                <div className="clinicalCondition">
+                  {item.clinicalCondition.message}
+                </div>
+              </StyledItemDescription>
 
-            <StyledItemActions>
-              <EditIcon
-                onClick={() => {
-                  actions.edit(item);
-                }}
-              />
-              <AssignmentIcon
-                onClick={() => {
-                  console.log(item);
-                }}
-              />
-              <HighlightOffIcon
-                onClick={() => {
-                  console.log(item);
-                }}
-              />
-            </StyledItemActions>
-          </ListItem>
-          <Divider component="li" />
-        </React.Fragment>
-      ))}
-    </StyledList>
-  );
+              <StyledItemActions>
+                <EditIcon
+                  onClick={() => {
+                    actions.edit(item);
+                  }}
+                />
+                <AssignmentIcon
+                  onClick={() => {
+                    console.log(item);
+                  }}
+                />
+                <HighlightOffIcon
+                  onClick={() => {
+                    console.log(item);
+                  }}
+                />
+              </StyledItemActions>
+            </ListItem>
+            <Divider component="li" />
+          </React.Fragment>
+        ))}
+      </StyledList>
+    );
+  }
 };
 
 export default List;

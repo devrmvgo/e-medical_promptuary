@@ -9,6 +9,13 @@ export const StyledContentPatientList = styled.div`
   flex-direction: column;
   align-items: center;
 
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 80%;
+  }
+
   h2 {
     color: ${colors.gray};
   }
