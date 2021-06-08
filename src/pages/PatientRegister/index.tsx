@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+
+//STYLED COMPONENTS
 import {
   StyledContentPatientRegister,
   StyledForm,
   StyledButton,
 } from './styles';
 
+//GENERAL COMPONENTS
+import TitlePage from '../../components/TitlePage';
+
+//MATERIAL-UI COMPONENTS
 import TextField from '@material-ui/core/TextField';
 import Snackbar from '@material-ui/core/Snackbar';
-import { PatientData } from '../../utils/interfaces';
-
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 
+//REQUISIÇÕES
 import { create, getOne, update } from '../../models/patient';
-import TitlePage from '../../components/TitlePage';
-const Alert = (props: AlertProps) => {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-};
+import { PatientData } from '../../utils/interfaces';
 
 interface AlerInterface {
   message?: string;
@@ -28,11 +30,12 @@ interface Params {
   idPatient?: string;
 }
 
-const Home: React.FC = () => {
-  const [openAlert, setOpenAlert] = useState<AlerInterface>({
-    show: false,
-    type: 'success',
-  });
+const Alert = (props: AlertProps) => {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
+
+const PatientRegister: React.FC = (): JSX.Element => {
+  const params: Params = useParams();
 
   const patientForm: PatientData = {
     id: '',
@@ -54,7 +57,10 @@ const Home: React.FC = () => {
 
   const [patient, setPatient] = useState<PatientData>(patientForm);
 
-  const params: Params = useParams();
+  const [openAlert, setOpenAlert] = useState<AlerInterface>({
+    show: false,
+    type: 'success',
+  });
 
   const getPatient = async (patientId: string) => {
     const patient = await getOne(patientId);
@@ -231,4 +237,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default PatientRegister;

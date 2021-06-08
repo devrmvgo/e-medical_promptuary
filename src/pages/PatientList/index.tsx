@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
-
 import { useHistory } from 'react-router-dom';
-import { StyledContentPatientList } from './styles';
-import List from '../../components/List';
-import { getList, remove } from '../../models/patient';
-import { PatientInterface } from '../../utils/interfaces';
 
+//STYLED COMPONENTS
+import { StyledContentPatientList } from './styles';
+
+//GENERAL COMPONENTS
+import TitlePage from '../../components/TitlePage';
+import List from '../../components/List';
+
+//MATERIAL-UI COMPONENTS
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-const Alert = (props: AlertProps) => {
-  return <MuiAlert elevation={6} variant="filled" {...props} />;
-};
+//REQUISIÇÕES
+import { getList, remove } from '../../models/patient';
+import { PatientInterface } from '../../utils/interfaces';
 
 interface AlerInterface {
   message?: string;
@@ -20,9 +23,13 @@ interface AlerInterface {
   type: 'success' | 'error';
 }
 
-import TitlePage from '../../components/TitlePage';
+const Alert = (props: AlertProps) => {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
 
-const Home: React.FC = () => {
+const PatientList: React.FC = (): JSX.Element => {
+  const history = useHistory();
+
   const [patients, setPatients] = useState<PatientInterface[]>([]);
   const [load, setLoad] = useState(true);
 
@@ -31,15 +38,11 @@ const Home: React.FC = () => {
     type: 'success',
   });
 
-  const history = useHistory();
-
   const actions = {
     edit: (patient: PatientInterface) => {
-      console.log('editar: ', patient);
       history.push(`/patients/register/${patient.id}`);
     },
     see: (patient: PatientInterface) => {
-      console.log('ver: ', patient);
       history.push(`/patients/promptuary/${patient.id}`);
     },
     delete: async (patient: PatientInterface) => {
@@ -110,4 +113,4 @@ const Home: React.FC = () => {
   }
 };
 
-export default Home;
+export default PatientList;
