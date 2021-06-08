@@ -97,7 +97,13 @@ const MiniDrawer: React.FC<Props> = ({ children }: Props): JSX.Element => {
         <div className={classes.toolbar}>
           {open ? (
             <React.Fragment>
-              <StyledTitle>E-Prontuário</StyledTitle>
+              <StyledTitle
+                onClick={() => {
+                  history.push('/');
+                }}
+              >
+                E-Prontuário
+              </StyledTitle>
               <IconButton onClick={handleDrawerClose}>
                 <ChevronLeftIcon />
               </IconButton>
