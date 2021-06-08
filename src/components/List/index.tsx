@@ -29,12 +29,12 @@ interface Actions {
   delete: (patient: PatientInterface) => void;
 }
 
-type data = {
+type Props = {
   items: Array<PatientInterface>;
   actions: Actions;
 };
 
-const List: React.FC<data> = ({ items, actions }: data) => {
+const List: React.FC<Props> = ({ items, actions }: Props): JSX.Element => {
   const [search, setSearch] = useState('');
   const [listItems, setListItems] = useState<Array<PatientInterface>>([]);
 

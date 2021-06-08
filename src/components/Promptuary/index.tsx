@@ -1,8 +1,7 @@
 import React from 'react';
-
 import Button from '@material-ui/core/Button';
 
-function Promptuary(): JSX.Element {
+const Promptuary = (): JSX.Element => {
   return (
     <div>
       <Button variant="contained">Default</Button>
@@ -11,6 +10,6 @@ function Promptuary(): JSX.Element {
       </Button>
     </div>
   );
-}
+};
 
 export default Promptuary;

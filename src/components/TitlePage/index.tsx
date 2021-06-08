@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyledTitle } from './styles';
 
-type props = {
+type Props = {
   children: string;
 };
 
-const TitlePage = ({ children }: props): JSX.Element => {
+const TitlePage: React.FC<Props> = ({ children }: Props): JSX.Element => {
   return <StyledTitle>{children}</StyledTitle>;
 };
 

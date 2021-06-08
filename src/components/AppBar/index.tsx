@@ -1,6 +1,8 @@
 import React from 'react';
 import clsx from 'clsx';
 import { useHistory } from 'react-router-dom';
+
+//MATERIAL-UI COMPONENTS
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,9 +16,10 @@ import ViewListIcon from '@material-ui/icons/ViewList';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import Divider from '@material-ui/core/Divider';
 
+//STYLED COMPONENTS
 import { StyledDrawer, StyledTitle } from './styles';
 
-const drawerWidth = 260;
+const drawerWidth = 270;
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -51,7 +54,6 @@ const useStyles = makeStyles((theme: Theme) =>
       alignItems: 'center',
       justifyContent: 'flex-end',
       padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
       ...theme.mixins.toolbar,
     },
     content: {
@@ -64,7 +66,7 @@ type Props = {
   children: JSX.Element;
 };
 
-export default function MiniDrawer({ children }: Props): JSX.Element {
+const MiniDrawer: React.FC<Props> = ({ children }: Props): JSX.Element => {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const history = useHistory();
@@ -157,4 +159,6 @@ export default function MiniDrawer({ children }: Props): JSX.Element {
       <main className={classes.content}>{children}</main>
     </div>
   );
-}
+};
+
+export default MiniDrawer;
