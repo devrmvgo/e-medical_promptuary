@@ -6,4 +6,5 @@ export const StyledTitle = styled.div`
   margin: 2rem;
   color: ${colors.primaryColor};
   font-size: 25px;
+  text-align: center;
 `;

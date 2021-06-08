@@ -106,7 +106,7 @@ const PatientList: React.FC = (): JSX.Element => {
           </Alert>
         </Snackbar>
 
-        <TitlePage>Lista de pacientes</TitlePage>
+        <TitlePage>Lista de Pacientes</TitlePage>
         <List items={patients} actions={actions} />
       </StyledContentPatientList>
     );

@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { StyledContentPromptuary } from './styles';
+import {
+  StyledContentPromptuary,
+  StyledContentInfo,
+  StyledAvatar,
+} from './styles';
+
+//GENERAL COMPONENTS
+import TitlePage from '../../components/TitlePage';
 
 import { PatientData } from '../../utils/interfaces';
+import Divider from '@material-ui/core/Divider';
 
 import { getOne } from '../../models/patient';
 
@@ -23,9 +31,10 @@ const Promptuary: React.FC = () => {
     const patient = await getOne(patientId);
 
     if (patient) {
+      console.log(patient);
       setPatient({ id: patient.patient_id, ...patient.patient_data });
     } else {
-      console.error('Falha ao carregar listagem de pacientes');
+      console.error('Falha ao carregar paciente');
     }
   };
 
@@ -36,17 +45,61 @@ const Promptuary: React.FC = () => {
     }
   }, []);
 
-  if (params.idPatient) {
+  if (!params.idPatient) {
     return (
       <StyledContentPromptuary>
-        Prontuário: {params.idPatient}
+        <TitlePage>Prontuário do Paciente</TitlePage>
+        <span>
+          Selecione o respectivo paciente que deseja ver o prontuário:
+        </span>
       </StyledContentPromptuary>
     );
-  } else {
-    return (
-      <StyledContentPromptuary>Prontuário selecione</StyledContentPromptuary>
-    );
   }
+
+  return (
+    <StyledContentPromptuary>
+      <TitlePage>Prontuário do Paciente</TitlePage>
+      <StyledContentInfo>
+        <div>
+          <StyledAvatar alt={patient.name} src="./avatar" />
+        </div>
+        <div>
+          <span>{patient.name}</span>
+          <span>
+            Documento número {patient.cpfNumber}, nascido(a) em{' '}
+            {patient.birthDate}, gênero {patient.gender}
+          </span>
+          <span>
+            Tipo Sangúineo {patient.bloodType || 'não cadastrado'}, peso{' '}
+            {patient.weight || 'não cadastrado'}, altura{' '}
+            {patient.heigth || 'não cadastrado'}
+          </span>
+          <span>
+            Telefone {patient.phone || 'não cadastrado'}, endereço{' '}
+            {patient.address || 'não cadastrado'}
+          </span>
+        </div>
+      </StyledContentInfo>
+      <Divider />
+      {/* Medicações : {patient.medications}
+      Comordidades/Doenças : {patient.illnesses} */}
+      {/* "patient": {
+          "cpfNumber": "125.854.845-95",
+          "name": "Maria Pereira Souza",
+          "birthDate": "23/02/1973",
+          "gender": "Feminino",
+          "job": "Agricultora",
+          "address": "Rua Lágoa Nova, n 110, Av. Indepêndencia, Pau dos Ferros",
+          "phone": "(84) 9 8808-5163",
+          "weight": 91.2,
+          "heigth": 1.63,
+          "bloodType": "A+",
+          "medications": [],
+          "illnesses": [{"name": "hipertensão"}],
+          "clinicalConsultations": []
+        } */}
+    </StyledContentPromptuary>
+  );
 };
 
 export default Promptuary;

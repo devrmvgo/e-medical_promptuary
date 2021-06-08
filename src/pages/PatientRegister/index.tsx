@@ -68,7 +68,7 @@ const PatientRegister: React.FC = (): JSX.Element => {
     if (patient) {
       setPatient({ id: patient.patient_id, ...patient.patient_data });
     } else {
-      console.error('Falha ao carregar listagem de pacientes');
+      console.error('Falha ao paciente');
     }
   };
 
