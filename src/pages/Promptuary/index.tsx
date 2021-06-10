@@ -8,7 +8,7 @@ import {
 
 //GENERAL COMPONENTS
 import TitlePage from '../../components/TitlePage';
-
+import ListTopic from '../../components/ListTopíc';
 import { PatientData } from '../../utils/interfaces';
 import Divider from '@material-ui/core/Divider';
 
@@ -79,8 +79,31 @@ const Promptuary: React.FC = () => {
             {patient.address || 'não cadastrado'}
           </span>
         </div>
+        <button
+          onClick={() => {
+            console.log(patient);
+          }}
+        >
+          Salvar Paciente
+        </button>
       </StyledContentInfo>
       <Divider />
+
+      <span>Medicações</span>
+      <ListTopic
+        items={[{ name: 'Doença 1' }, { name: 'Doença 2' }]}
+        columns={['name']}
+      />
+      <Divider />
+
+      <span>Comordidades/Doenças</span>
+      <ListTopic items={patient.illnesses || []} columns={['name','name']} />
+      <Divider />
+
+      <span>Consultas</span>
+      <ListTopic items={patient.clinicalConsultations || []} columns={['name','name']} />
+      <Divider />
+
       {/* Medicações : {patient.medications}
       Comordidades/Doenças : {patient.illnesses} */}
       {/* "patient": {

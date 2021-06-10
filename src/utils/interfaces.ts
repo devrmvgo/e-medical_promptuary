@@ -28,9 +28,9 @@ export interface PatientData {
   weight?: string;
   heigth?: string;
   bloodType?: string;
-  medications?: any;
-  illnesses?: any;
-  clinicalConsultations?: any;
+  medications?: any[];
+  illnesses?: any[];
+  clinicalConsultations?: any[];
 }
 
 //DADOS DE PACIENTE QUE VIRÃO DO BANCO DE DADOS
