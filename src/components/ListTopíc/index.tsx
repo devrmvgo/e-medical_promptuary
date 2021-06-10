@@ -21,7 +21,7 @@ const List: React.FC<Props> = ({ items, columns }: Props): JSX.Element => {
               {columns
                 ? columns.map((column, i) => (
                     <span key={i}>
-                      {item[column]}{' '}
+                      {item[column]}{';'}
                     </span>
                   ))
                 : ''}
@@ -29,8 +29,7 @@ const List: React.FC<Props> = ({ items, columns }: Props): JSX.Element => {
           ))
         ) : (
           <div className="noItems">
-            <span>:(</span>
-            <span>nada cadastrado</span>
+            <span>Nada cadastrado :)</span>
           </div>
         )}
       </StyledList>

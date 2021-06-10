@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider';
 
 import ModalForm from '../../components/ModalForm';
 
+import TextField from '@material-ui/core/TextField';
 import { getOne } from '../../models/patient';
 
 interface Params {
@@ -22,6 +23,7 @@ interface Params {
 
 const Promptuary: React.FC = () => {
   const params: Params = useParams();
+  const [form, setForm] = useState<any>({});
   const [patient, setPatient] = useState<PatientData>({
     name: '',
     cpfNumber: '',
@@ -93,17 +95,38 @@ const Promptuary: React.FC = () => {
 
       <span>Medicações</span>
       <ListTopic
-        items={[{ name: 'Doença 1' }, { name: 'Doença 2' }]}
-        columns={['name']}
+        items={patient.medications || []}
+        columns={['name', 'effect', 'date']}
       />
       <ModalForm
         submit={() => {
-          console.log(patient);
+          console.log(form);
+          patient.medications?.push(form);
+          setForm({});
+        }}
+        cancel={() => {
+          setForm({});
         }}
       >
         <div>
-          Formulário aqui dentro
-          <input />
+          <TextField
+            label="Nome do Remédio"
+            style={{ margin: 5 }}
+            placeholder="Nome do Remédio"
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+          />
+          <TextField
+            label="Efeito do Remédio"
+            style={{ margin: 5 }}
+            placeholder="Efeito do Remédio"
+            onChange={(e) => setForm({ ...form, effect: e.target.value })}
+          />
+          <TextField
+            label="Data da medicação"
+            style={{ margin: 5 }}
+            placeholder="Data da medicação"
+            onChange={(e) => setForm({ ...form, date: e.target.value })}
+          />
         </div>
       </ModalForm>
       <Divider />

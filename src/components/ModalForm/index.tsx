@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     paper: {
       position: 'absolute',
-      width: 600,
+      width: 700,
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme: Theme) =>
 type Props = {
   children: JSX.Element;
   submit: () => void;
+  cancel: () => void;
 };
 
-const ModalForm = ({ children, submit }: Props): JSX.Element => {
+const ModalForm = ({ children, submit, cancel }: Props): JSX.Element => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -55,6 +56,7 @@ const ModalForm = ({ children, submit }: Props): JSX.Element => {
         type="button"
         className="cancel"
         onClick={() => {
+          cancel();
           setOpen(false);
         }}
       >
@@ -75,6 +77,7 @@ const ModalForm = ({ children, submit }: Props): JSX.Element => {
       <Modal
         open={open}
         onClose={() => {
+          cancel();
           setOpen(false);
         }}
         aria-labelledby="simple-modal-title"
