@@ -12,6 +12,8 @@ import ListTopic from '../../components/ListTopíc';
 import { PatientData } from '../../utils/interfaces';
 import Divider from '@material-ui/core/Divider';
 
+import ModalForm from '../../components/ModalForm';
+
 import { getOne } from '../../models/patient';
 
 interface Params {
@@ -94,14 +96,27 @@ const Promptuary: React.FC = () => {
         items={[{ name: 'Doença 1' }, { name: 'Doença 2' }]}
         columns={['name']}
       />
+      <ModalForm
+        submit={() => {
+          console.log(patient);
+        }}
+      >
+        <div>
+          Formulário aqui dentro
+          <input />
+        </div>
+      </ModalForm>
       <Divider />
 
       <span>Comordidades/Doenças</span>
-      <ListTopic items={patient.illnesses || []} columns={['name','name']} />
+      <ListTopic items={patient.illnesses || []} columns={['name', 'name']} />
       <Divider />
 
       <span>Consultas</span>
-      <ListTopic items={patient.clinicalConsultations || []} columns={['name','name']} />
+      <ListTopic
+        items={patient.clinicalConsultations || []}
+        columns={['name', 'name']}
+      />
       <Divider />
 
       {/* Medicações : {patient.medications}
