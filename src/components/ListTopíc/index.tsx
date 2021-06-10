@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 
 //MATERIAL-UI COMPONENTS
@@ -21,7 +22,9 @@ const List: React.FC<Props> = ({ items, columns }: Props): JSX.Element => {
               {columns
                 ? columns.map((column, i) => (
                     <span key={i}>
-                      {item[column]}{';'}
+                      {' - '}
+                      {item[column]}
+                      {'; '}
                     </span>
                   ))
                 : ''}

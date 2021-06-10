@@ -2,9 +2,21 @@ import styled from 'styled-components';
 // import colors from '../../styles/colors';
 import Avatar from '@material-ui/core/Avatar';
 
-export const StyledContentPromptuary = styled.div`
+export const StyledPromptuary = styled.div`
   height: 100%;
-  padding: 1rem 4rem;
+  padding: 2rem 4rem;
+`;
+
+export const StyledContentPromptuary = styled.div`
+  height: 650px;
+  overflow: scroll !important;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+  }
 `;
 
 export const StyledContentInfo = styled.div`

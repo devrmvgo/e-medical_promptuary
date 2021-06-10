@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import {
+  StyledPromptuary,
   StyledContentPromptuary,
   StyledContentInfo,
   StyledAvatar,
@@ -23,6 +24,7 @@ interface Params {
 
 const Promptuary: React.FC = () => {
   const params: Params = useParams();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [form, setForm] = useState<any>({});
   const [patient, setPatient] = useState<PatientData>({
     name: '',
@@ -61,90 +63,157 @@ const Promptuary: React.FC = () => {
   }
 
   return (
-    <StyledContentPromptuary>
-      <TitlePage>Prontuário do Paciente</TitlePage>
-      <StyledContentInfo>
-        <div>
-          <StyledAvatar alt={patient.name} src="./avatar" />
-        </div>
-        <div>
-          <span>{patient.name}</span>
-          <span>
-            Documento número {patient.cpfNumber}, nascido(a) em{' '}
-            {patient.birthDate}, gênero {patient.gender}
-          </span>
-          <span>
-            Tipo Sangúineo {patient.bloodType || 'não cadastrado'}, peso{' '}
-            {patient.weight || 'não cadastrado'}, altura{' '}
-            {patient.heigth || 'não cadastrado'}
-          </span>
-          <span>
-            Telefone {patient.phone || 'não cadastrado'}, endereço{' '}
-            {patient.address || 'não cadastrado'}
-          </span>
-        </div>
-        <button
-          onClick={() => {
-            console.log(patient);
+    <StyledPromptuary>
+      <StyledContentPromptuary>
+        <TitlePage>Prontuário do Paciente</TitlePage>
+        <StyledContentInfo>
+          <div>
+            <StyledAvatar alt={patient.name} src="./avatar" />
+          </div>
+          <div>
+            <span>{patient.name}</span>
+            <span>
+              Documento número {patient.cpfNumber}, nascido(a) em{' '}
+              {patient.birthDate}, gênero {patient.gender}
+            </span>
+            <span>
+              Tipo Sangúineo {patient.bloodType || 'não cadastrado'}, peso{' '}
+              {patient.weight || 'não cadastrado'}, altura{' '}
+              {patient.heigth || 'não cadastrado'}
+            </span>
+            <span>
+              Telefone {patient.phone || 'não cadastrado'}, endereço{' '}
+              {patient.address || 'não cadastrado'}
+            </span>
+          </div>
+          <button
+            onClick={() => {
+              console.log(patient);
+            }}
+          >
+            Salvar Paciente
+          </button>
+        </StyledContentInfo>
+        <Divider />
+
+        <span>Medicações</span>
+        <ListTopic
+          items={patient.medications || []}
+          columns={['name', 'effect', 'date']}
+        />
+        <ModalForm
+          submit={() => {
+            patient.medications?.push(form);
+            setForm({});
+          }}
+          cancel={() => {
+            setForm({});
           }}
         >
-          Salvar Paciente
-        </button>
-      </StyledContentInfo>
-      <Divider />
+          <div>
+            <TextField
+              label="Nome do Remédio"
+              style={{ margin: 5 }}
+              placeholder="Nome do Remédio"
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <TextField
+              label="Efeito do Remédio"
+              style={{ margin: 5 }}
+              placeholder="Efeito do Remédio"
+              onChange={(e) => setForm({ ...form, effect: e.target.value })}
+            />
+            <TextField
+              label="Data da Medicação"
+              style={{ margin: 5 }}
+              placeholder="Data da Medicação"
+              onChange={(e) => setForm({ ...form, date: e.target.value })}
+            />
+          </div>
+        </ModalForm>
+        <Divider />
 
-      <span>Medicações</span>
-      <ListTopic
-        items={patient.medications || []}
-        columns={['name', 'effect', 'date']}
-      />
-      <ModalForm
-        submit={() => {
-          console.log(form);
-          patient.medications?.push(form);
-          setForm({});
-        }}
-        cancel={() => {
-          setForm({});
-        }}
-      >
-        <div>
-          <TextField
-            label="Nome do Remédio"
-            style={{ margin: 5 }}
-            placeholder="Nome do Remédio"
-            onChange={(e) => setForm({ ...form, name: e.target.value })}
-          />
-          <TextField
-            label="Efeito do Remédio"
-            style={{ margin: 5 }}
-            placeholder="Efeito do Remédio"
-            onChange={(e) => setForm({ ...form, effect: e.target.value })}
-          />
-          <TextField
-            label="Data da medicação"
-            style={{ margin: 5 }}
-            placeholder="Data da medicação"
-            onChange={(e) => setForm({ ...form, date: e.target.value })}
-          />
-        </div>
-      </ModalForm>
-      <Divider />
+        <span>Comordidades/Doenças</span>
+        <ListTopic
+          items={patient.illnesses || []}
+          columns={['name', 'diagnosticDate', 'treatmentType']}
+        />
+        <ModalForm
+          submit={() => {
+            patient.illnesses?.push(form);
+            setForm({});
+          }}
+          cancel={() => {
+            setForm({});
+          }}
+        >
+          <div>
+            <TextField
+              label="Nome da Doença"
+              style={{ margin: 5 }}
+              placeholder="Nome da Doença"
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+            />
+            <TextField
+              label="Data do Diagnóstico"
+              style={{ margin: 5 }}
+              placeholder="Data do Diagnóstico"
+              onChange={(e) =>
+                setForm({ ...form, diagnosticDate: e.target.value })
+              }
+            />
+            <TextField
+              label="Tipo de Tratamento"
+              style={{ margin: 5 }}
+              placeholder="Tipo de Tratamento"
+              onChange={(e) =>
+                setForm({ ...form, treatmentType: e.target.value })
+              }
+            />
+          </div>
+        </ModalForm>
+        <Divider />
 
-      <span>Comordidades/Doenças</span>
-      <ListTopic items={patient.illnesses || []} columns={['name', 'name']} />
-      <Divider />
+        <span>Consultas</span>
+        <ListTopic
+          items={patient.clinicalConsultations || []}
+          columns={['type', 'date', 'diagnostic']}
+        />
+        <ModalForm
+          submit={() => {
+            patient.clinicalConsultations?.push(form);
+            setForm({});
+          }}
+          cancel={() => {
+            setForm({});
+          }}
+        >
+          <div>
+            <TextField
+              label="Tipo da Consulta"
+              style={{ margin: 5 }}
+              placeholder="Tipo da Consulta"
+              onChange={(e) => setForm({ ...form, type: e.target.value })}
+            />
+            <TextField
+              label="Data da Consulta"
+              style={{ margin: 5 }}
+              placeholder="Data da Consulta"
+              onChange={(e) => setForm({ ...form, date: e.target.value })}
+            />
+            <TextField
+              label="Diagnóstico da Consulta"
+              style={{ margin: 5 }}
+              placeholder="Diagnóstico da Consulta"
+              onChange={(e) => setForm({ ...form, diagnostic: e.target.value })}
+            />
+          </div>
+        </ModalForm>
+        <Divider />
 
-      <span>Consultas</span>
-      <ListTopic
-        items={patient.clinicalConsultations || []}
-        columns={['name']}
-      />
-      <Divider />
-
-      {/* Medicações : {patient.medications}
+        {/* Medicações : {patient.medications}
       Comordidades/Doenças : {patient.illnesses} */}
-      {/* "patient": {
+        {/* "patient": {
           "cpfNumber": "125.854.845-95",
           "name": "Maria Pereira Souza",
           "birthDate": "23/02/1973",
@@ -159,7 +228,8 @@ const Promptuary: React.FC = () => {
           "illnesses": [{"name": "hipertensão"}],
           "clinicalConsultations": []
         } */}
-    </StyledContentPromptuary>
+      </StyledContentPromptuary>
+    </StyledPromptuary>
   );
 };
 
