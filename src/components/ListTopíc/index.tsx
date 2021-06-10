@@ -7,7 +7,7 @@ import ListItem from '@material-ui/core/ListItem';
 import { StyledList } from './styles';
 
 type Props = {
-  items?: Array<any>;
+  items: Array<any>;
   columns?: Array<any>;
 };
 
@@ -15,13 +15,13 @@ const List: React.FC<Props> = ({ items, columns }: Props): JSX.Element => {
   return (
     <React.Fragment>
       <StyledList>
-        {items ? (
+        {items[0] ? (
           items.map((item, index) => (
             <ListItem key={index}>
               {columns
                 ? columns.map((column, i) => (
                     <span key={i}>
-                      {item[column]}{';'}
+                      {item[column]}{' '}
                     </span>
                   ))
                 : ''}

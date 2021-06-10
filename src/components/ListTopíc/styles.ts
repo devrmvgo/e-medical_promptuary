@@ -15,6 +15,6 @@ export const StyledList = styled(List)`
   }
 
   li:hover {
-    background: red;
+    background: ${colors.grayLighter};
   }
 `;

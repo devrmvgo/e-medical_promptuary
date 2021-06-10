@@ -115,7 +115,7 @@ const Promptuary: React.FC = () => {
       <span>Consultas</span>
       <ListTopic
         items={patient.clinicalConsultations || []}
-        columns={['name', 'name']}
+        columns={['name']}
       />
       <Divider />
 
