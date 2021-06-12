@@ -19,19 +19,36 @@ import Divider from '@material-ui/core/Divider';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalForm from '../../components/ModalForm';
 
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import TextField from '@material-ui/core/TextField';
-import { getOne, getList } from '../../models/patient';
+import { getOne, getList, update } from '../../models/patient';
+
+interface AlerInterface {
+  message?: string;
+  show: boolean;
+  type: 'success' | 'error';
+}
 
 interface Params {
   idPatient?: string;
 }
 
-const Promptuary: React.FC = () => {
+const Alert = (props: AlertProps) => {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+};
+
+const Promptuary: React.FC = (): JSX.Element => {
   const params: Params = useParams();
   const history = useHistory();
   const [load, setLoad] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [form, setForm] = useState<any>({});
+  const [openAlert, setOpenAlert] = useState<AlerInterface>({
+    show: false,
+    type: 'success',
+  });
+
   const [patient, setPatient] = useState<PatientData>({
     name: '',
     cpfNumber: '',
@@ -54,13 +71,34 @@ const Promptuary: React.FC = () => {
   };
 
   const getPatient = async (patientId: string) => {
-    const patient = await getOne(patientId);
+    const getPatient = await getOne(patientId);
 
-    if (patient) {
-      console.log(patient);
-      setPatient({ id: patient.patient_id, ...patient.patient_data });
+    if (getPatient) {
+      setPatient({ id: getPatient.patient_id, ...getPatient.patient_data });
     } else {
       console.error('Falha ao carregar paciente');
+    }
+  };
+
+  const updatePatient = async () => {
+    let patientUpdated;
+
+    if (patient.id) {
+      patientUpdated = await update(patient.id, patient);
+    }
+
+    if (patientUpdated) {
+      setOpenAlert({
+        message: 'Paciente atualizado com sucesso',
+        show: true,
+        type: 'success',
+      });
+    } else {
+      setOpenAlert({
+        message: 'Falha ao atualizar paciente',
+        show: true,
+        type: 'error',
+      });
     }
   };
 
@@ -71,6 +109,13 @@ const Promptuary: React.FC = () => {
 
     setList();
   }, []);
+
+  useEffect(() => {
+    if (!patient.medications) setPatient({ ...patient, medications: [] });
+    if (!patient.illnesses) setPatient({ ...patient, illnesses: [] });
+    if (!patient.clinicalConsultations)
+      setPatient({ ...patient, clinicalConsultations: [] });
+  }, [patient]);
 
   if (load) {
     return (
@@ -109,6 +154,20 @@ const Promptuary: React.FC = () => {
     <StyledPromptuary>
       <StyledContentPromptuary>
         <TitlePage>Prontuário do Paciente</TitlePage>
+
+        <Snackbar
+          open={openAlert.show}
+          autoHideDuration={3}
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        >
+          <Alert
+            severity={openAlert.type}
+            onClose={() => setOpenAlert({ ...openAlert, show: false })}
+          >
+            {openAlert.message}
+          </Alert>
+        </Snackbar>
+
         <StyledContentInfo>
           <div>
             <StyledAvatar alt={patient.name} src="./avatar" />
@@ -131,7 +190,7 @@ const Promptuary: React.FC = () => {
           </div>
           <button
             onClick={() => {
-              console.log(patient);
+              updatePatient();
             }}
           >
             Salvar Paciente
@@ -253,24 +312,6 @@ const Promptuary: React.FC = () => {
           </div>
         </ModalForm>
         <Divider />
-
-        {/* Medicações : {patient.medications}
-      Comordidades/Doenças : {patient.illnesses} */}
-        {/* "patient": {
-          "cpfNumber": "125.854.845-95",
-          "name": "Maria Pereira Souza",
-          "birthDate": "23/02/1973",
-          "gender": "Feminino",
-          "job": "Agricultora",
-          "address": "Rua Lágoa Nova, n 110, Av. Indepêndencia, Pau dos Ferros",
-          "phone": "(84) 9 8808-5163",
-          "weight": 91.2,
-          "heigth": 1.63,
-          "bloodType": "A+",
-          "medications": [],
-          "illnesses": [{"name": "hipertensão"}],
-          "clinicalConsultations": []
-        } */}
       </StyledContentPromptuary>
     </StyledPromptuary>
   );
