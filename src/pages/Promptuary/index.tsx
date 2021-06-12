@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import {
   StyledPromptuary,
   StyledContentPromptuary,
   StyledContentInfo,
   StyledAvatar,
+  StyledSelectPatient,
+  StyledSelectOptionPatient,
 } from './styles';
 
 //GENERAL COMPONENTS
 import TitlePage from '../../components/TitlePage';
 import ListTopic from '../../components/ListTopic';
-import { PatientData } from '../../utils/interfaces';
+import { PatientData, PatientInterface } from '../../utils/interfaces';
 import Divider from '@material-ui/core/Divider';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalForm from '../../components/ModalForm';
 
 import TextField from '@material-ui/core/TextField';
-import { getOne } from '../../models/patient';
+import { getOne, getList } from '../../models/patient';
 
 interface Params {
   idPatient?: string;
@@ -24,6 +28,8 @@ interface Params {
 
 const Promptuary: React.FC = () => {
   const params: Params = useParams();
+  const history = useHistory();
+  const [load, setLoad] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [form, setForm] = useState<any>({});
   const [patient, setPatient] = useState<PatientData>({
@@ -32,6 +38,20 @@ const Promptuary: React.FC = () => {
     birthDate: '',
     gender: '',
   });
+
+  const [patients, setPatients] = useState<PatientInterface[]>([]);
+
+  const setList = async () => {
+    const list = await getList();
+
+    if (list) {
+      setPatients(list);
+    } else {
+      console.error('Falha ao carregar listagem de pacientes');
+    }
+
+    setLoad(false);
+  };
 
   const getPatient = async (patientId: string) => {
     const patient = await getOne(patientId);
@@ -47,18 +67,41 @@ const Promptuary: React.FC = () => {
   useEffect(() => {
     if (params.idPatient) {
       getPatient(params.idPatient);
-      console.log(patient);
     }
+
+    setList();
   }, []);
 
-  if (!params.idPatient) {
+  if (load) {
     return (
-      <StyledContentPromptuary>
+      <StyledPromptuary>
+        <div className="loading">
+          <CircularProgress />
+        </div>
+      </StyledPromptuary>
+    );
+  } else if (!params.idPatient) {
+    return (
+      <StyledPromptuary>
         <TitlePage>Prontuário do Paciente</TitlePage>
         <span>
           Selecione o respectivo paciente que deseja ver o prontuário:
         </span>
-      </StyledContentPromptuary>
+
+        <StyledSelectPatient>
+          {patients.map((item, index) => (
+            <StyledSelectOptionPatient
+              key={index}
+              onClick={() => {
+                history.push(`/patients/promptuary/${item.id}`);
+                history.go(0);
+              }}
+            >
+              {item.name}
+            </StyledSelectOptionPatient>
+          ))}
+        </StyledSelectPatient>
+      </StyledPromptuary>
     );
   }
 

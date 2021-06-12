@@ -66,10 +66,10 @@ type Props = {
   children: JSX.Element;
 };
 
-const MiniDrawer: React.FC<Props> = ({ children }: Props): JSX.Element => {
+const SideBar: React.FC<Props> = ({ children }: Props): JSX.Element => {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
   const history = useHistory();
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -167,4 +167,4 @@ const MiniDrawer: React.FC<Props> = ({ children }: Props): JSX.Element => {
   );
 };
 
-export default MiniDrawer;
+export default SideBar;

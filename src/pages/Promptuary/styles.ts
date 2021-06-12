@@ -1,10 +1,30 @@
 import styled from 'styled-components';
-// import colors from '../../styles/colors';
+import colors from '../../styles/colors';
 import Avatar from '@material-ui/core/Avatar';
 
 export const StyledPromptuary = styled.div`
   height: 100%;
   padding: 2rem 4rem;
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+
+    svg {
+      color: ${colors.primaryColor};
+    }
+  }
+`;
+
+export const StyledSelectPatient = styled.ul``;
+
+export const StyledSelectOptionPatient = styled.li`
+  &:hover {
+    background: red;
+  }
 `;
 
 export const StyledContentPromptuary = styled.div`
