@@ -6,12 +6,11 @@ import {
   StyledContentPromptuary,
   StyledContentInfo,
   StyledAvatar,
-  StyledSelectPatient,
-  StyledSelectOptionPatient,
 } from './styles';
 
 //GENERAL COMPONENTS
 import TitlePage from '../../components/TitlePage';
+import List from '../../components/List';
 import ListTopic from '../../components/ListTopic';
 import { PatientData, PatientInterface } from '../../utils/interfaces';
 import Divider from '@material-ui/core/Divider';
@@ -128,24 +127,18 @@ const Promptuary: React.FC = (): JSX.Element => {
   } else if (!params.idPatient) {
     return (
       <StyledPromptuary>
-        <TitlePage>Prontuário do Paciente</TitlePage>
-        <span>
-          Selecione o respectivo paciente que deseja ver o prontuário:
-        </span>
+        <TitlePage>Prontuário - Selecione o Paciente</TitlePage>
 
-        <StyledSelectPatient>
-          {patients.map((item, index) => (
-            <StyledSelectOptionPatient
-              key={index}
-              onClick={() => {
-                history.push(`/patients/promptuary/${item.id}`);
-                history.go(0);
-              }}
-            >
-              {item.name}
-            </StyledSelectOptionPatient>
-          ))}
-        </StyledSelectPatient>
+        <List
+          items={patients}
+          actions={{
+            see: (patient: PatientInterface) => {
+              setLoad(true);
+              history.push(`/patients/promptuary/${patient.id}`);
+              history.go(0);
+            },
+          }}
+        />
       </StyledPromptuary>
     );
   }

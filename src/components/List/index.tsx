@@ -24,9 +24,9 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import { PatientInterface } from '../../utils/interfaces';
 
 interface Actions {
-  edit: (patient: PatientInterface) => void;
+  edit?: (patient: PatientInterface) => void;
   see: (patient: PatientInterface) => void;
-  delete: (patient: PatientInterface) => void;
+  delete?: (patient: PatientInterface) => void;
 }
 
 type Props = {
@@ -97,20 +97,29 @@ const List: React.FC<Props> = ({ items, actions }: Props): JSX.Element => {
                         }}
                       />
                     </div>
-                    <div title="Editar">
-                      <EditIcon
-                        onClick={() => {
-                          actions.edit(item);
-                        }}
-                      />
-                    </div>
-                    <div title="Apagar">
-                      <HighlightOffIcon
-                        onClick={() => {
-                          actions.delete(item);
-                        }}
-                      />
-                    </div>
+                    {actions.edit ? (
+                      <div title="Editar">
+                        <EditIcon
+                          onClick={() => {
+                            actions.edit ? actions.edit(item) : '';
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      ''
+                    )}
+
+                    {actions.delete ? (
+                      <div title="Apagar">
+                        <HighlightOffIcon
+                          onClick={() => {
+                            actions.delete ? actions.delete(item) : '';
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      ''
+                    )}
                   </StyledItemActions>
                 </ListItem>
                 <Divider component="li" />

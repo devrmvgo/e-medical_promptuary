@@ -19,30 +19,6 @@ export const StyledPromptuary = styled.div`
   }
 `;
 
-export const StyledSelectPatient = styled.ul`
-  margin: 2rem auto;
-  text-align: center;
-  width: 500px;
-  height: 400px;
-
-  overflow: scroll;
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #dad7d7;
-  }
-`;
-
-export const StyledSelectOptionPatient = styled.li`
-  list-style-type: none;
-  padding: 0.5rem 0;
-  &:hover {
-    background: ${colors.grayLighter};
-    cursor: pointer;
-  }
-`;
-
 export const StyledContentPromptuary = styled.div`
   height: 650px;
   overflow: scroll !important;
