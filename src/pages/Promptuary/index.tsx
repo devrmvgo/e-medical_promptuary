@@ -9,7 +9,7 @@ import {
 
 //GENERAL COMPONENTS
 import TitlePage from '../../components/TitlePage';
-import ListTopic from '../../components/ListTopíc';
+import ListTopic from '../../components/ListTopic';
 import { PatientData } from '../../utils/interfaces';
 import Divider from '@material-ui/core/Divider';
 
