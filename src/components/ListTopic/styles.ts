@@ -14,6 +14,12 @@ export const StyledList = styled(List)`
     color: ${colors.primaryColor};
   }
 
+  li {
+    display: flex;
+    flex-direction: column;
+    text-align: rigth !important;
+  }
+
   li:hover {
     background: ${colors.grayLighter};
   }
