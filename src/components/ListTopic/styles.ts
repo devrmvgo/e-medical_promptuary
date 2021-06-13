@@ -17,7 +17,6 @@ export const StyledList = styled(List)`
   li {
     display: flex;
     flex-direction: column;
-    text-align: rigth !important;
   }
 
   li:hover {

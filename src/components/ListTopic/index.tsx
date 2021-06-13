@@ -21,9 +21,7 @@ const List: React.FC<Props> = ({ items, columns }: Props): JSX.Element => {
             <ListItem key={index}>
               {columns
                 ? columns.map((column, i) => (
-                    <>
-                      <span key={i}>{item[column]}</span>
-                    </>
+                    <span key={i}>{item[column]}</span>
                   ))
                 : ''}
             </ListItem>
