@@ -4,7 +4,7 @@ import Avatar from '@material-ui/core/Avatar';
 
 export const StyledPromptuary = styled.div`
   height: 100%;
-  padding: 2rem 4rem;
+  margin-left: 4rem;
 
   .loading {
     display: flex;
@@ -16,6 +16,10 @@ export const StyledPromptuary = styled.div`
     svg {
       color: ${colors.primaryColor};
     }
+  }
+
+  .subtitle {
+    margin: 1rem 10px;
   }
 `;
 
@@ -33,23 +37,52 @@ export const StyledContentPromptuary = styled.div`
 
 export const StyledContentInfo = styled.div`
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 2fr 7fr;
+  margin: 1rem 0;
 
   div {
     display: flex;
     flex-direction: column;
+
     span {
-      margin: 0.5rem 0;
+      margin: 5px 0;
+      font-size: 15px;
     }
   }
 
-  margin: 1rem 0;
+  .spanInfo {
+    width: 600px;
+    margin: 2rem 0.5rem 1rem;
+    font-size: 15px;
+    color: ${colors.primaryColor};
+  }
+
+  button {
+    margin: 2rem 0.5rem 1rem;
+    cursor: pointer;
+  }
+`;
+
+export const StyledButton = styled.button`
+  margin: 0 30px;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  color: ${colors.white} !important;
+  background: ${colors.primaryColor};
+  font-size: 0.875rem;
+  text-transform: uppercase;
+
+  &:hover {
+    background: ${colors.boxShadow};
+    color: ${colors.primaryColor}!important;
+  }
 `;
 
 export const StyledAvatar = styled(Avatar)`
-  height: 130px;
-  width: 130px;
+  height: 110px;
+  width: 110px;
   font-size: 50px;
-
-  margin: auto 0;
+  margin: auto;
 `;

@@ -32,7 +32,7 @@ const List: React.FC<Props> = ({ items, columns }: Props): JSX.Element => {
           ))
         ) : (
           <div className="noItems">
-            <span>Nada cadastrado :)</span>
+            <span>Nada cadastrado</span>
           </div>
         )}
       </StyledList>

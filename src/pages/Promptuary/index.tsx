@@ -6,6 +6,7 @@ import {
   StyledContentPromptuary,
   StyledContentInfo,
   StyledAvatar,
+  StyledButton,
 } from './styles';
 
 //GENERAL COMPONENTS
@@ -77,6 +78,8 @@ const Promptuary: React.FC = (): JSX.Element => {
     } else {
       console.error('Falha ao carregar paciente');
     }
+
+    setLoad(false);
   };
 
   const updatePatient = async () => {
@@ -134,8 +137,8 @@ const Promptuary: React.FC = (): JSX.Element => {
           actions={{
             see: (patient: PatientInterface) => {
               setLoad(true);
+              getPatient(patient.id);
               history.push(`/patients/promptuary/${patient.id}`);
-              history.go(0);
             },
           }}
         />
@@ -168,7 +171,7 @@ const Promptuary: React.FC = (): JSX.Element => {
           <div>
             <span>{patient.name}</span>
             <span>
-              Documento número {patient.cpfNumber}, nascido(a) em{' '}
+              Documento nº {patient.cpfNumber}, nascido(a) em{' '}
               {patient.birthDate}, gênero {patient.gender}
             </span>
             <span>
@@ -181,17 +184,24 @@ const Promptuary: React.FC = (): JSX.Element => {
               {patient.address || 'não cadastrado'}
             </span>
           </div>
-          <button
+
+          <StyledButton
             onClick={() => {
               updatePatient();
             }}
           >
-            Salvar Paciente
-          </button>
+            Salvar Informações
+          </StyledButton>
+
+          <span className="spanInfo">
+            Após inserir informações de medicamentos, comordidades ou consultas
+            médicas, lembre-se de registrar as informações clicando no botão
+            salvar.
+          </span>
         </StyledContentInfo>
         <Divider />
 
-        <span>Medicações</span>
+        <div className="subtitle">Medicações</div>
         <ListTopic
           items={patient.medications || []}
           columns={['name', 'effect', 'date']}
@@ -228,7 +238,7 @@ const Promptuary: React.FC = (): JSX.Element => {
         </ModalForm>
         <Divider />
 
-        <span>Comordidades/Doenças</span>
+        <div className="subtitle">Comordidades/Doenças</div>
         <ListTopic
           items={patient.illnesses || []}
           columns={['name', 'diagnosticDate', 'treatmentType']}
@@ -269,7 +279,7 @@ const Promptuary: React.FC = (): JSX.Element => {
         </ModalForm>
         <Divider />
 
-        <span>Consultas</span>
+        <div className="subtitle">Consultas</div>
         <ListTopic
           items={patient.clinicalConsultations || []}
           columns={['type', 'date', 'diagnostic']}
@@ -304,7 +314,6 @@ const Promptuary: React.FC = (): JSX.Element => {
             />
           </div>
         </ModalForm>
-        <Divider />
       </StyledContentPromptuary>
     </StyledPromptuary>
   );
