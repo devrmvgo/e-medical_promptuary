@@ -2,11 +2,7 @@
 
 **A React project to register patient's medical informations.**
 
-## 👁 Demo
-
-Acess [e-promptuary](https://vigilant-banach-e1d221.netlify.app/) to view demo.
-
-## ⚙️-running
+## ⚙️ Running
 
 To run this application, you'll need to have installed on your computer:
 
